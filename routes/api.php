@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\CardController;
 
 Route::prefix('users')->group(function () {
     Route::get('/', [UserController::class, 'index']); // Get all users
@@ -36,4 +37,17 @@ Route::prefix('student')->group(function () {
     Route::get('/{id}', [StudentController::class, 'show']);
     Route::put('/{id}', [StudentController::class, 'update']);
     Route::delete('/{id}', [StudentController::class, 'destroy']);
+});
+
+Route::prefix('card')->group(function () {
+    Route::get('/', [CardController::class, 'index']);
+    Route::post('/', [CardController::class, 'store']);
+    Route::get('/{id}', [CardController::class, 'show']);
+    Route::put('/{id}', [CardController::class, 'update']);
+    Route::delete('/{id}', [CardController::class, 'destroy']);
+});
+
+Route::prefix('attendance')->group(function () {
+    Route::get('/', [CardController::class, 'index']);
+    Route::post('/checkin', [CardController::class, 'store']);
 });

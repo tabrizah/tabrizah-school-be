@@ -16,15 +16,19 @@ class Classes extends Model
         'teacher_id',
     ];
 
+    public function getTotalStudentAttribute()
+    {
+        return $this->students()->count(); 
+    }
     
     public function teacher()
     {
-        return $this->hasOne(Teacher::class, 'class_id', 'id');
+        return $this->hasOne(Teacher::class, 'id', 'teacher_id')->select( 'id', "name");  
     }
 
-    
+
     public function students()
     {
-        return $this->hasMany(Student::class, 'class_id', 'id');
+        return $this->hasMany(Student::class, 'class_id', 'id');  
     }
 }

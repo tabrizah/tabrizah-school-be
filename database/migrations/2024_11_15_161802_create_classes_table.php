@@ -10,9 +10,8 @@ class CreateClassesTable extends Migration
         Schema::create('classes', function (Blueprint $table) {
             $table->id();
             $table->string('name', 55);
-            $table->integer('total_student');
-            $table->unsignedBigInteger('teacher_id');
-            $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
+            $table->integer('total_student')->default(0);
+            $table->unsignedBigInteger('teacher_id')->nullable(); // Kolom saja, tanpa foreign key
             $table->timestamps();
         });
     }

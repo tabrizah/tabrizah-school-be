@@ -11,8 +11,8 @@ class CreateStudentsTable extends Migration
             $table->id();
             $table->string('nisn');
             $table->string('name');
-            $table->unsignedBigInteger('class_id'); // Menambahkan tipe unsignedBigInteger untuk class_id
-            $table->unsignedBigInteger('teacher_id'); // Menambahkan tipe unsignedBigInteger untuk teacher_id
+            $table->unsignedBigInteger('class_id');
+            $table->unsignedBigInteger('teacher_id');
             $table->unsignedBigInteger('user_id');
             
             $table->foreign('class_id')->references('id')->on('classes')->onDelete('cascade'); // Relasi ke tabel classes

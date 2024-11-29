@@ -18,24 +18,43 @@ class Student extends Model
         'name',
         'class_id',
         'teacher_id',
-        'user_id', // Foreign key ke tabel users
+        'user_id', 
     ];
 
-    // Relasi ke model User
+    // protected static function booted()
+    // {
+    //     static::creating(function ($student) {
+    //         // Salin nama dari user
+    //         $student->name = $student->user->name;
+    
+    //         // Tetapkan teacher_id berdasarkan class_id
+    //         if (!$student->teacher_id && $student->class_id) {
+    //             $teacher = Teacher::where('class_id', $student->class_id)->first();
+    //             $student->teacher_id = $teacher ? $teacher->id : null;
+    //         }
+    //     });
+
+    //     static::saved(function ($student) {
+    //         if ($student->class) {
+    //             $student->class->touch();
+    //         }
+    //     });
+    // }
+    
     public function user()
     {
         return $this->belongsTo(User::class)->select( 'id');
     }
 
-    // Relasi ke model Classes
     public function class()
     {
         return $this->belongsTo(Classes::class)->select('id', 'name'); 
     }
 
-    // Relasi ke Teacher (Wali Kelas)
     public function teacher()
     {
         return $this->belongsTo(Teacher::class)->select('id', 'name');
     }
+
+    
 }

@@ -15,17 +15,23 @@ class Teacher extends Model
 
     protected $fillable = [
         'name',
-        'user_id', // Foreign key ke tabel users
-        'class_id', // Optional
+        'user_id', 
+        'class_id',
     ];
+    
+    protected $hidden = ['user'];
 
-    // Relasi ke model User
+    // protected static function booted()
+    // {
+    //     static::creating(function ($teacher) {
+    //         $teacher->name = $teacher->user->name; // Salin nama dari user
+    //     });
+    // }
     public function user()
     {
         return $this->belongsTo(User::class)->select( 'id');
     }
 
-    // Relasi ke model Classes
     public function class()
     {
         return $this->belongsTo(Classes::class)->select( 'id', 'name');

@@ -37,31 +37,31 @@ class ClassesController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'teacher_id' => 'nullable|exists:teachers,id', // Nullable
-        ]);
+{
+    $validatedData = $request->validate([
+        'name' => 'required|string|max:255',
+        'teacher_id' => 'nullable|exists:teachers,id', // Nullable
+    ]);
 
-        // Membuat kelas tanpa total_student karena akan dihitung secara dinamis
-        $class = Classes::create([
-            'name' => $validatedData['name'],
-            'teacher_id' => $validatedData['teacher_id'] ?? null, // Default null
-        ]);
+    // Membuat kelas tanpa total_student karena akan dihitung secara dinamis
+    $class = Classes::create([
+        'name' => $validatedData['name'],
+        'teacher_id' => $validatedData['teacher_id'] ?? null, // Default null
+    ]);
 
-        // Menghitung total_student berdasarkan siswa yang terdaftar untuk kelas ini
-        $totalStudents = Student::where('class_id', $class->id)->count();
+    // Menghitung total_student berdasarkan siswa yang terdaftar untuk kelas ini
+    $totalStudents = Student::where('class_id', $class->id)->count();
 
-        // Memperbarui total_student pada kelas yang baru dibuat
-        $class->update([
-            'total_student' => $totalStudents,
-        ]);
+    // Memperbarui total_student pada kelas yang baru dibuat
+    $class->update([
+        'total_student' => $totalStudents,
+    ]);
 
-        return response()->json([
-            'message' => 'Class created successfully!',
-            'data' => $class,
-        ], 201);
-    }
+    return response()->json([
+        'message' => 'Class created successfully!',
+        'data' => $class,
+    ], 201);
+}
 
     
     public function update(Request $request, $id)
