@@ -23,7 +23,7 @@ class Classes extends Model
     
     public function teacher()
     {
-        return $this->hasOne(Teacher::class, 'id', 'teacher_id')->select( 'id', "name");  
+        return $this->hasOne(Teacher::class, 'id', 'class_id')->select( 'id', "name");  
     }
 
 

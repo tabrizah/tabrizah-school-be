@@ -21,25 +21,6 @@ class Student extends Model
         'user_id', 
     ];
 
-    // protected static function booted()
-    // {
-    //     static::creating(function ($student) {
-    //         // Salin nama dari user
-    //         $student->name = $student->user->name;
-    
-    //         // Tetapkan teacher_id berdasarkan class_id
-    //         if (!$student->teacher_id && $student->class_id) {
-    //             $teacher = Teacher::where('class_id', $student->class_id)->first();
-    //             $student->teacher_id = $teacher ? $teacher->id : null;
-    //         }
-    //     });
-
-    //     static::saved(function ($student) {
-    //         if ($student->class) {
-    //             $student->class->touch();
-    //         }
-    //     });
-    // }
     
     public function user()
     {
@@ -53,7 +34,7 @@ class Student extends Model
 
     public function teacher()
     {
-        return $this->belongsTo(Teacher::class)->select('id', 'name');
+        return $this->hasOne(Teacher::class)->select('id', 'name');
     }
 
     

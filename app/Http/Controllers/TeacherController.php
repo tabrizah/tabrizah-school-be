@@ -11,14 +11,14 @@ class TeacherController extends Controller
     // Get all teachers
     public function index()
     {
-        $teachers = Teacher::with('user', 'class')->get();
+        $teachers = Teacher::with('user')->get();
         return response()->json(['status' => 'success', 'data' => $teachers]);
     }
 
     // Get single teacher
     public function show($id)
     {
-        $teacher = Teacher::with('user', 'class')->find($id);
+        $teacher = Teacher::with('user')->find($id);
 
         if (!$teacher) {
             return response()->json(['status' => 'error', 'message' => 'Teacher not found'], 404);

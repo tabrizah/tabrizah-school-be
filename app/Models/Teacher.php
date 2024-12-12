@@ -21,12 +21,6 @@ class Teacher extends Model
     
     protected $hidden = ['user'];
 
-    // protected static function booted()
-    // {
-    //     static::creating(function ($teacher) {
-    //         $teacher->name = $teacher->user->name; // Salin nama dari user
-    //     });
-    // }
     public function user()
     {
         return $this->belongsTo(User::class)->select( 'id');
@@ -34,7 +28,7 @@ class Teacher extends Model
 
     public function class()
     {
-        return $this->belongsTo(Classes::class)->select( 'id', 'name');
+    return $this->hasOne(Classes::class, 'teacher_id', 'id')->select('id', 'name');
     }
 
     

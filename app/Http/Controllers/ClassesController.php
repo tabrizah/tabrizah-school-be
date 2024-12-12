@@ -11,7 +11,7 @@ class ClassesController extends Controller
     
     public function index()
     {
-        $classes = Classes::with('teacher', 'students')->get(); // Include related teacher and students
+        $classes = Classes::with( 'students')->get(); // Include related teacher and students
         return response()->json([
             'status' => 'success',
             'data' => $classes
@@ -21,7 +21,7 @@ class ClassesController extends Controller
 
     public function show($id)
     {
-        $class = Classes::with('teacher', 'students')->find($id);
+        $class = Classes::with( 'students')->find($id);
 
         if (!$class) {
             return response()->json([
