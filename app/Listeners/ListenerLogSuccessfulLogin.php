@@ -32,7 +32,7 @@ class ListenerLogSuccessfulLogin
                     action: EnumSystemLogAction::View->value,
                     entityType: 'User',
                     entityId: $event->user?->id ?? null,  // Added null safe operator and null coalesce
-                    description: 'User authenticated via API',
+                    description: 'User authenticated',
                     additionalMetadata: array_merge(
                         ['token_type' => 'sanctum'],
                         $event->metadata

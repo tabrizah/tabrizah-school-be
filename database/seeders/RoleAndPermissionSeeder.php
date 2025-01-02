@@ -21,6 +21,14 @@ class RoleAndPermissionSeeder extends Seeder
         Permission::create(['name' => 'view-own-logs']);
         Permission::create(['name' => 'export-logs']);
 
+         // Create authentication permissions
+         Permission::create(['name' => 'view-profile']);
+         Permission::create(['name' => 'edit-profile']);
+         Permission::create(['name' => 'view-users']);
+         Permission::create(['name' => 'create-users']);
+         Permission::create(['name' => 'edit-users']);
+         Permission::create(['name' => 'delete-users']);
+
         // Create fundamental roles
         $superAdmin = Role::create(['name' => 'super-admin']);
         
