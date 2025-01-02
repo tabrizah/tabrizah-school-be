@@ -40,6 +40,16 @@ class AuthService implements AuthServiceInterface
         ];
     }
 
+    public function register(array $dataRegister): array
+    {
+        $registerUser = $this->authRepository->createUser($dataRegister);
+
+        return [
+            'user' => $registerUser,
+            'token' => $this->authRepository->createToken($registerUser)
+        ];
+    }
+
     public function logout(User $user): void
     {
         $this->authRepository->revokeTokens($user);

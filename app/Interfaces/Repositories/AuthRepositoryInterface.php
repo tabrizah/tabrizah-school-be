@@ -10,4 +10,5 @@ interface AuthRepositoryInterface
     public function createToken(User $user, string $deviceName = null): string;
     public function revokeTokens(User $user): void;
     public function updateLastLogin(User $user): void;
+    public function createUser(array $dataRegister): User;
 }

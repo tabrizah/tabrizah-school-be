@@ -33,4 +33,9 @@ class AuthRepository implements AuthRepositoryInterface
             'last_login_at' => Carbon::now(),
         ])->save();
     }
+
+    public function createUser(array $dataRegister): User
+    {
+        return User::create($dataRegister);
+    }
 }
